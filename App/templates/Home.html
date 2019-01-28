@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/jqueryui/1.10.2/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
+    <link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
+    {% if script_list is not none %}
+        {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script>
+        {% endfor %}
+    {% endif %}
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+                            class="icon-bar"></span></button> <a class="navbar-brand" href="#">主页</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">状态</a>
+                        </li>
+                        <li>
+                            <a href="#">历史记录</a>
+                        </li>
+                        <li>
+                            <a href="#">关于</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">左下拉<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">1</a>
+                                </li>
+                                <li>
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">4</a>
+                                </li>
+                                <li class="divider">
+                                </li>
+                                <li>
+                                    <a href="#">5</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-left" role="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" />
+                        </div> <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#">登录</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">语言<strong class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">中文简体</a>
+                                </li>
+                                <li>
+                                    <a href="#">中文繁體</a>
+                                </li>
+                                <li>
+                                    <a href="#">English</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-1 column">
+        </div>
+        <div class="col-md-10 column">
+            <div class="jumbotron">
+                <h1>
+                    花的名字
+                </h1>
+                <p>
+                    花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍
+                    花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍花的介绍
+                </p>
+                <p>
+                    <a class="btn btn-primary btn-large" href="#">Let's Go!</a>
+                </p>
+            </div>
+            <div class="quote">
+                <blockquote>
+                    <p>
+                        花儿今日份心情...............
+                    </p> <small>你的花儿 <cite> today</cite></small>
+                </blockquote>
+            </div>
+            <div class="row clearfix">  
+                <div class="col-md-1 column">
+                </div>
+                <div class="col-md-10 column">
+                    <div class="panel">
+                        <div class="panel-group" id="panel-429684">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429684" href="#panel-element-845362">湿度</a>
+                                </div>
+                                <div id="panel-element-845362" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Chart1
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="panel-429685">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429685" href="#panel-element-845363">湿度</a>
+                                </div>
+                                <div id="panel-element-845363" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Chart2
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="panel-429686">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429686" href="#panel-element-845364">湿度</a>
+                                </div>
+                                <div id="panel-element-845364" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Chart3
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="panel-429687">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429687" href="#panel-element-845365">湿度</a>
+                                </div>
+                                <div id="panel-element-845365" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Chart4
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="panel-group" id="panel-429688">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429688" href="#panel-element-845366">湿度</a>
+                                </div>
+                                <div id="panel-element-845366" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        Chart5
+                                    </div>
+                                </div>
+                            </div>
+                        </div>   
+
+                    </div>
+                <div class="col-md-1 column">
+                </div>
+            </div>      
+        <div class="col-md-1 column">
+        </div>
+    </div>
+</div>
+</body>
+</html>
