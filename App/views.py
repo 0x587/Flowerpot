@@ -3,8 +3,8 @@ Routes and views for the flask application.
 """
 from flask import render_template, request
 from pyecharts_javascripthon.api import TRANSLATOR
-from App import app
 from pyecharts import Bar
+from App import app
 from jinja2 import Environment, PackageLoader
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
@@ -26,7 +26,7 @@ def home():
 
 @app.route('/rev',  methods=['PUT'])
 def receiver():
-    print('run')
+    print('Get rev')
     print(request.form)
     return 'welcome'
 

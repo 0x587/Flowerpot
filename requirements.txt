@@ -1,3 +1,4 @@
+sqlalchemy
 bottle==0.12.16
 certifi==2018.11.29
 chardet==3.0.4
