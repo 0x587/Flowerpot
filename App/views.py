@@ -1,7 +1,7 @@
 """
 Routes and views for the flask application.
 """
-from flask import render_template
+from flask import render_template, request
 from pyecharts_javascripthon.api import TRANSLATOR
 from App import app
 from pyecharts import Bar
@@ -22,6 +22,13 @@ def bar_chart():
 @app.route('/home')
 def home():
     return render_template('Home.html')
+
+
+@app.route('/rev',  methods=['PUT'])
+def receiver():
+    print('run')
+    print(request.form)
+    return 'welcome'
 
 
 def main():

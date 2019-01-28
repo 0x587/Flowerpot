@@ -3,6 +3,7 @@
     <words>
       <w>echarts</w>
       <w>endfor</w>
+      <w>httplib</w>
       <w>jinja</w>
       <w>jsfile</w>
       <w>maxtime</w>
@@ -10,6 +11,7 @@
       <w>onload</w>
       <w>onresize</w>
       <w>performace</w>
+      <w>reqdata</w>
     </words>
   </dictionary>
 </component>
