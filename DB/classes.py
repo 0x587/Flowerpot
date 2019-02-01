@@ -16,11 +16,15 @@ class Record(base):
     soil_humidity = Column(Float)
     luminance = Column(Float)
 
-    def __init__(self):
+    def __init__(self, air_temperature, air_humidity, soil_temperature, soil_humidity):
+        self.air_temperature = air_temperature
+        self.air_humidity = air_humidity
+        self.soil_temperature = soil_temperature
+        self.soil_humidity = soil_humidity
         self.datetime = datetime.now()
 
     def __repr__(self):
-        return 'date:%s' % self.datetime
+        return 'record in %s' % self.datetime
 
 
 base.metadata.create_all(engine)
