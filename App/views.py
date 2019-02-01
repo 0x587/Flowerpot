@@ -6,6 +6,8 @@ from pyecharts_javascripthon.api import TRANSLATOR
 from pyecharts import Bar
 from App import app
 from jinja2 import Environment, PackageLoader
+from DB.classes import Record
+from DB import session
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -27,8 +29,10 @@ def home():
 @app.route('/rev',  methods=['PUT'])
 def receiver():
     print('Get rev')
-    print(request.form)
-    return 'welcome'
+    temp_record = Record()
+    session.add(temp_record)
+    session.commit()
+    return 'rev is OK'
 
 
 def main():
