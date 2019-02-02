@@ -6,7 +6,7 @@ from pyecharts_javascripthon.api import TRANSLATOR
 from pyecharts import Bar
 from App import app
 from jinja2 import Environment, PackageLoader
-from DB.classes import Record
+from DB.classes import StateRecord, DrenchedRecord
 from DB import session
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
@@ -26,13 +26,21 @@ def home():
     return render_template('Home.html')
 
 
-@app.route('/rev',  methods=['PUT'])
+@app.route('/rev', methods=['PUT'])
 def receiver():
     print('Get rev')
-    temp_record = Record()
+    temp_record = StateRecord()
     session.add(temp_record)
     session.commit()
-    return 'rev is OK'
+    return '200'  # 200:request is approved 300:request is rejected
+
+
+@app.route('/drenched')
+def drenched_check():
+    record = DrenchedRecord(request.form['water_size'])
+    session.add(record)
+    session.commit()
+    return '200'  # 200:request is approved 300:request is rejected
 
 
 def main():
