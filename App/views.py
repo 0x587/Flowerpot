@@ -36,7 +36,7 @@ def receiver():
 
 
 @app.route('/drenched')
-def drenched_check():
+def drenched_request():
     record = DrenchedRecord(request.form['water_size'])
     session.add(record)
     session.commit()
