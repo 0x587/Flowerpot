@@ -3,6 +3,7 @@ from sqlalchemy import Column, Float, Integer, DateTime
 from datetime import datetime
 
 
+
 class Record:
     record_id = Column(Integer, primary_key=True, autoincrement=True)
     datetime = Column(DateTime)
