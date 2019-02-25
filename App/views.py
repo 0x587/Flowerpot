@@ -23,7 +23,9 @@ def bar_chart():
 @app.route('/')
 @app.route('/home')
 def home():
-    return render_template('Home.html')
+    # return render_template('Home.html')
+    print('connect')
+    return 'Welcome!'
 
 
 @app.route('/rev', methods=['PUT'])
