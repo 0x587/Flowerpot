@@ -5,19 +5,10 @@ from flask import render_template, request
 from pyecharts_javascripthon.api import TRANSLATOR
 from pyecharts import Bar
 from App import app
-from jinja2 import Environment, PackageLoader
 from DB.classes import StateRecord
 from DB import session
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
-
-
-def bar_chart():
-    bar = Bar("我的第一个图表", "这里是副标题")
-    bar.add(
-        "服装", ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"], [5, 20, 36, 10, 75, 90]
-    )
-    return bar
 
 
 @app.route('/data_post', methods=['POST', 'GET'])
@@ -38,34 +29,51 @@ def home():
     return 'Welcome!'
 
 
-@app.route('/rev', methods=['PUT'])
+@app.route('/home')
 def receiver():
-    print('Get rev')
-    temp_record = StateRecord()
-    session.add(temp_record)
-    session.commit()
-    return '200'  # 200:request is approved 300:request is rejected
-
-
-
-def main():
-    bar = bar_chart()
-    jinja_env = Environment(loader=PackageLoader('App', 'templates'))
-
-    javascript_snippet = TRANSLATOR.translate(bar.options)
-    chart_temp_env = jinja_env.get_template('chart_block.html')
-    chart = chart_temp_env.render(
-        width='100%',
-        height='600px',
-        chart_id=bar.chart_id,
-        renderer=bar.renderer,
-        custom_function=javascript_snippet.function_snippet,
-        options=javascript_snippet.option_snippet,
-    )
+    chart_list, script_list = render_charts([bar_chart(), bar_chart()])
     return render_template(
         'Home.html',
         host=REMOTE_HOST,
-        script_list=bar.get_js_dependencies(),
-        my_chart=chart,
+        chart1=chart_list[0],
+        chart2=chart_list[1],
+        script_list=script_list,
     )
-    # return chart1
+
+
+@app.route("/chart")
+def chart():
+    _bar = bar_chart()
+    javascript_snippet = TRANSLATOR.translate(_bar.options)
+    return render_template(
+        "chart_block.html",
+        renderer=_bar.renderer,
+        custom_function=javascript_snippet.function_snippet,
+        options=javascript_snippet.option_snippet,
+        script_list=_bar.get_js_dependencies(),
+    )
+
+
+def bar_chart():
+    bar = Bar("我的第一个图表", "这里是副标题")
+    bar.add(
+        "服装", ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"], [10, 20, 36, 10, 75, 90]
+    )
+    return bar
+
+
+def render_charts(charts):
+    chart_htmls = []
+    script_list = []
+    for _chart in charts:
+        javascript_snippet = TRANSLATOR.translate(_chart.options)
+        chart_html = render_template(
+            'chart_block.html',
+            chart_id=_chart.chart_id,
+            host=REMOTE_HOST,
+            renderer=_chart.renderer,
+            custom_function=javascript_snippet.function_snippet,
+            options=javascript_snippet.option_snippet, )
+        script_list.append(_chart.get_js_dependencies())
+        chart_htmls.append(chart_html)
+    return chart_htmls, script_list[0]

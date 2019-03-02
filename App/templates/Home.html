@@ -8,11 +8,10 @@
     <script type="text/javascript" src="http://cdn.staticfile.org/jqueryui-touch-punch/0.2.2/jquery.ui.touch-punch.min.js"></script>
     <script type="text/javascript" src="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/js/bootstrap.min.js"></script>
     <link href="http://cdn.staticfile.org/twitter-bootstrap/3.0.1/css/bootstrap.min.css" rel="stylesheet">
-    {% if script_list is not none %}
-        {% for jsfile_name in script_list %}
-        <script src="{{ host }}/{{ jsfile_name }}.js"></script>
-        {% endfor %}
-    {% endif %}
+    <!--<script src="https://pyecharts.github.io/assets/js/echarts.min.js"></script>-->
+    {% for jsfile_name in script_list %}
+    <script src="{{ host }}/{{ jsfile_name }}.js"></script>
+    {% endfor %}
 </head>
 <body>
 <div class="container-fluid">
@@ -113,80 +112,37 @@
                     </p> <small>你的花儿 <cite> today</cite></small>
                 </blockquote>
             </div>
-            <div class="row clearfix">  
+            <div class="row clearfix">
                 <div class="col-md-1 column">
                 </div>
                 <div class="col-md-10 column">
                     <div class="panel">
-                        <div class="panel-group" id="panel-429684">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429684" href="#panel-element-845362">湿度</a>
-                                </div>
-                                <div id="panel-element-845362" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        Chart1
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <div class="panel-group" id="panel-129932">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-129932" href="#panel-element-247048">亮度</a>
+                </div>
+                <div id="panel-element-247048" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        {{ chart1|safe}}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-129932" href="#panel-element-207382">湿度</a>
+                </div>
+                <div id="panel-element-207382" class="panel-collapse collapse">
+                    <div class="panel-body">
 
-                        <div class="panel-group" id="panel-429685">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429685" href="#panel-element-845363">湿度</a>
-                                </div>
-                                <div id="panel-element-845363" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        Chart2
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-group" id="panel-429686">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429686" href="#panel-element-845364">湿度</a>
-                                </div>
-                                <div id="panel-element-845364" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        Chart3
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-group" id="panel-429687">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429687" href="#panel-element-845365">湿度</a>
-                                </div>
-                                <div id="panel-element-845365" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        Chart4
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="panel-group" id="panel-429688">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="panel-title" data-toggle="collapse" data-parent="#panel-429688" href="#panel-element-845366">湿度</a>
-                                </div>
-                                <div id="panel-element-845366" class="panel-collapse collapse in">
-                                    <div class="panel-body">
-                                        Chart5
-                                    </div>
-                                </div>
-                            </div>
-                        </div>   
-
+                    </div>
+                </div>
+            </div>
+        </div>
                     </div>
                 <div class="col-md-1 column">
                 </div>
-            </div>      
+            </div>
         <div class="col-md-1 column">
         </div>
     </div>
