@@ -8,6 +8,7 @@ from App import app
 from jinja2 import Environment, PackageLoader
 from DB.classes import StateRecord, DrenchedRecord
 from DB import session
+import json , re
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -20,10 +21,13 @@ def bar_chart():
     return bar
 
 
-@app.route('/')
-@app.route('/home')
+@app.route('/', methods=['POST', 'GET'])
 def home():
-    return render_template('Home.html')
+    # return render_template('Home.html')
+    a = request.json
+    print(a)
+    print(type(a))
+    return 'Welcome!'
 
 
 @app.route('/rev', methods=['PUT'])
