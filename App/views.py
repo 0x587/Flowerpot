@@ -6,9 +6,8 @@ from pyecharts_javascripthon.api import TRANSLATOR
 from pyecharts import Bar
 from App import app
 from jinja2 import Environment, PackageLoader
-from DB.classes import StateRecord, DrenchedRecord
+from DB.classes import StateRecord
 from DB import session
-import json , re
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -19,6 +18,15 @@ def bar_chart():
         "服装", ["衬衫", "羊毛衫", "雪纺衫", "裤子", "高跟鞋", "袜子"], [5, 20, 36, 10, 75, 90]
     )
     return bar
+
+
+@app.route('/data_post', methods=['POST', 'GET'])
+def data_post():
+    state = StateRecord(light=request.json['light'])
+    session.add(state)
+    session.commit()
+    print('write')
+    return 'OK'
 
 
 @app.route('/', methods=['POST', 'GET'])
@@ -38,13 +46,6 @@ def receiver():
     session.commit()
     return '200'  # 200:request is approved 300:request is rejected
 
-
-@app.route('/drenched')
-def drenched_request():
-    record = DrenchedRecord(request.form['water_size'])
-    session.add(record)
-    session.commit()
-    return '200'  # 200:request is approved 300:request is rejected
 
 
 def main():
