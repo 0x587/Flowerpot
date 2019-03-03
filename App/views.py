@@ -36,6 +36,7 @@ def my_echart():
     x = []
     y = []
     states = session.query(StateRecord).filter().all()
+    session.close()
     for state in states:
         x.append(str(state.datetime))
         y.append(state.light)

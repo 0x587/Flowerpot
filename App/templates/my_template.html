@@ -39,25 +39,42 @@
             async:false,
             dataType:'json',
             success:function(data) {
-                app.xday = data.xdays;
-                app.yvalue = data.yvalues;
+                app.time = data.xdays;
+                app.value = data.yvalues;
                 myChart.setOption({
                     title: {
                         text: '异步数据加载示例'
                     },
                     tooltip: {},
+
                     legend: {
                         data:['亮度']
                     },
+
                     xAxis: {
-                        data: app.xday
+                    data: app.time
                     },
-                    yAxis: {},
+
+                    yAxis: {
+                    type: 'value'
+                    },
+
                     series: [{
                         name: '亮度',
-                        type: 'bar',
-                        data: app.yvalue
-                    }]
+                        type: 'line',
+                        data: app.value,
+                        smooth: true,
+                        markLine : {
+                        data : [
+                        {type : 'average', name: '平均值'}
+                        ]
+                        }
+                    }],
+                    dataZoom: [{
+                    type: 'inside'
+                    }, {
+                    type: 'slider'
+                    }],
                 })
             },
             error:function (msg) {
@@ -65,7 +82,7 @@
                 <!--alert('系统发生错误');-->
             }
         })
-    }, 500)
+    }, 1000)
 </script>
 </body>
 </html>
