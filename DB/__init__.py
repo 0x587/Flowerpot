@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 
 
 base = declarative_base()
-engine = create_engine(r'sqlite:///F:\File\Flowerpot\Flowerpot\DB\DB_data\DB.db')
+engine = create_engine("mysql+pymysql://root:python0408@cdb-ozn291s9.gz.tencentcdb.com:10089/Flowerpot", max_overflow=5)
 Session = sessionmaker(bind=engine)
 # 创建Session类实例
 session = Session()

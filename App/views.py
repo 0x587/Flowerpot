@@ -1,32 +1,50 @@
 """
 Routes and views for the flask application.
 """
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from pyecharts_javascripthon.api import TRANSLATOR
 from pyecharts import Bar
 from App import app
 from DB.classes import StateRecord
 from DB import session
+import json
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
 
 @app.route('/data_post', methods=['POST', 'GET'])
 def data_post():
-    state = StateRecord(light=request.json['light'])
-    session.add(state)
-    session.commit()
-    print('write')
+    try:
+        state = StateRecord(light=request.json['light'])
+        session.add(state)
+        session.commit()
+        session.close()
+    finally:
+        pass
     return 'OK'
 
 
-@app.route('/', methods=['POST', 'GET'])
-def home():
-    # return render_template('Home.html')
-    a = request.json
-    print(a)
-    print(type(a))
-    return 'Welcome!'
+@app.route('/')
+def hello():
+    return render_template('my_template.html')
+
+
+@app.route('/test', methods=['POST'])
+def my_echart():
+    # 转换成JSON数据格式
+    jsonData = {}
+    x = []
+    y = []
+    states = session.query(StateRecord).filter().all()
+    for state in states:
+        x.append(str(state.datetime))
+        y.append(state.light)
+    jsonData['xdays'] = x
+    jsonData['yvalues'] = y
+    j = json.dumps(jsonData)
+
+    # 在浏览器上渲染my_template.html模板（为了查看输出的数据）
+    return (j)
 
 
 @app.route('/home')

@@ -13,6 +13,7 @@
       <w>onload</w>
       <w>onresize</w>
       <w>performace</w>
+      <w>pymysql</w>
       <w>reqdata</w>
       <w>tablename</w>
     </words>
