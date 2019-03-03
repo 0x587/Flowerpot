@@ -39,8 +39,8 @@
             async:false,
             dataType:'json',
             success:function(data) {
-                app.time = data.xdays;
-                app.value = data.yvalues;
+                app.time = data.datetime;
+                app.value = data.values;
                 myChart.setOption({
                     title: {
                         text: '异步数据加载示例'
@@ -79,7 +79,7 @@
             },
             error:function (msg) {
                 console.log(msg);
-                <!--alert('系统发生错误');-->
+                alert('系统发生错误');
             }
         })
     }, 1000)

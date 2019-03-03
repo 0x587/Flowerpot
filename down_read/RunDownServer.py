@@ -3,7 +3,7 @@ This script runs the Demo application using a development server.
 """
 
 from os import environ
-from App import app
+from down_read.App import app
 
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')

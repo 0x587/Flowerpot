@@ -4,5 +4,5 @@ The flask application package.
 from flask import Flask
 
 app = Flask(__name__)
-import DB
-import App.views
+import down_read.DB
+import down_read.App.views

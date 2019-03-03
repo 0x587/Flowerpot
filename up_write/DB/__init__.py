@@ -8,4 +8,4 @@ engine = create_engine("mysql+pymysql://root:python0408@cdb-ozn291s9.gz.tencentc
 Session = sessionmaker(bind=engine)
 # 创建Session类实例
 session = Session()
-import DB.classes
+import up_write.DB.classes
