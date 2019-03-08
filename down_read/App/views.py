@@ -2,12 +2,11 @@
 Routes and views for the flask application.
 """
 import threading
-import queue
+import json
 from flask import render_template, url_for, redirect
 from down_read.App import app
 from down_read.DB.classes import StateRecord
 from down_read.DB import session
-import json
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 
@@ -33,7 +32,6 @@ def get_data():
     jsonData['datetime'] = x
     jsonData['values'] = y
     _json = json.dumps(jsonData)
-
     return _json
 
 
@@ -68,3 +66,8 @@ def return_data():
         return thread.get_result()
     else:
         return redirect(url_for('return_data'))
+
+
+@app.route('/a')
+def a():
+    return '1'
