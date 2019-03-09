@@ -13,4 +13,4 @@ if __name__ == '__main__':
     except ValueError:
         PORT = 5555
     app.debug = False
-    app.run(host='0.0.0.0', port=PORT)
+    app.run(host='127.0.0.1', port=PORT)

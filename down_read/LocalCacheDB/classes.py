@@ -1,4 +1,4 @@
-from down_read.DB import base, engine
+from down_read.LocalCacheDB import base, engine
 from sqlalchemy import Column, Float, Integer, DateTime
 from datetime import datetime
 
@@ -14,9 +14,11 @@ class StateRecord(base):
     humidity = Column(Float)
     light = Column(Float)
 
-    def __init__(self, light=0):
+    def __init__(self, light=0, date_time=None):
         self.light = light
-        self.datetime = datetime.now()
+        if date_time is None:
+            self.datetime = datetime.now()
+        else:self.datetime = date_time
 
     def __repr__(self):
         return 'State record in %s' % self.datetime
