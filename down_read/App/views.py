@@ -19,23 +19,23 @@ def cache_data():
     global timer
     nt = time.time()
     print('start loading')
+
     # download data
     down_data = session.query(StateRecord).filter().all()
     print('download data use time %s s' % str(time.time() - nt))
     nt = time.time()
     cacheDBlock.acquire()
+
     # empty data
-    del_data = LCsession.query(LCStateRecord).filter().all()
-    for data in del_data:
-        LCsession.delete(data)
+    LCsession.query(LCStateRecord).filter().delete()
     LCsession.commit()
     print('empty data spend %s s' % str(time.time() - nt))
     nt = time.time()
-    for data_obj in down_data:
-        in_obj = LCStateRecord(data_obj.light, data_obj.datetime)
-        LCsession.add(in_obj)
+    for data_index in range(len(down_data)):
+        down_data[data_index] = LCStateRecord(down_data[data_index].light, down_data[data_index].datetime)
+    LCsession.bulk_save_objects(down_data)
+
     LCsession.commit()
-    # LCsession.close()
     print('write data use time %s s' % str(time.time() - nt))
     LCsession.close()
     cacheDBlock.release()
