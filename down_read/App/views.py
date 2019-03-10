@@ -22,7 +22,7 @@ def cache_data():
 
     # download data
     down_data = session.query(StateRecord).filter().all()
-    print('download data use time %s s' % str(time.time() - nt))
+    print('download data spend %s s' % str(time.time() - nt))
     nt = time.time()
     cacheDBlock.acquire()
 
@@ -36,7 +36,7 @@ def cache_data():
         down_data[data_index] = LCStateRecord(down_data[data_index].light, down_data[data_index].datetime)
     LCsession.bulk_save_objects(down_data)
     LCsession.commit()
-    print('write data use time %s s' % str(time.time() - nt))
+    print('write data spend %s s' % str(time.time() - nt))
     LCsession.close()
     cacheDBlock.release()
     timer = threading.Timer(10, cache_data)
