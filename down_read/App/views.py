@@ -13,15 +13,17 @@ from down_read.LocalCacheDB.classes import StateRecord as LCStateRecord
 
 REMOTE_HOST = "https://pyecharts.github.io/assets/js"
 cacheDBlock = threading.Lock()
+DBlen = 0
 
 
 def cache_data():
-    global timer
+    global timer, DBlen
     nt = time.time()
     print('start loading')
 
     # download data
     down_data = session.query(StateRecord).filter().all()
+    DBlen = len(down_data)
     print('download data spend %s s' % str(time.time() - nt))
     nt = time.time()
     cacheDBlock.acquire()
@@ -47,20 +49,24 @@ cache_data()
 
 
 def get_data():
+    global DBlen
     jsonData = {}
     x = []
     y = []
     get_data_flag = False
+    states = []
     cacheDBlock.acquire()
     while not get_data_flag:
         try:
-            states = LCsession.query(LCStateRecord).filter().all()
+            t = time.time()
+            states = LCsession.query(LCStateRecord).filter(LCStateRecord.record_id >= DBlen - 1000).all()
         except Exception:
             print('get data failed')
             LCsession.close()
         else:
             get_data_flag = True
-    LCsession.close()
+            LCsession.close()
+            print('get data spend %s' % str((time.time() - t)*1000)+'ms')
     for state in states:
         x.append(str(state.datetime))
         y.append(state.light)
@@ -94,12 +100,12 @@ def hello():
 @app.route('/test', methods=['GET'])
 def return_data():
     thread = DataThread(func=get_data)
-    # thread.setDaemon(True)
     thread.start()
     thread.join()
     back = thread.get_result()
     if back is not None:
         return thread.get_result()
+
     else:
         return redirect(url_for('return_data'))
 
