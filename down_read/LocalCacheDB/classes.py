@@ -1,4 +1,4 @@
-from down_read.LocalCacheDB import base, engine
+from down_read.DB import base, engine
 from sqlalchemy import Column, Float, Integer, DateTime
 from datetime import datetime
 
@@ -18,7 +18,8 @@ class StateRecord(base):
         self.light = light
         if date_time is None:
             self.datetime = datetime.now()
-        else:self.datetime = date_time
+        else:
+            self.datetime = date_time
 
     def __repr__(self):
         return 'State record in %s' % self.datetime

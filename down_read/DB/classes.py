@@ -1,4 +1,4 @@
-from down_read.DB import base, engine
+from down_read.LocalCacheDB import base, engine
 from sqlalchemy import Column, Float, Integer, DateTime
 from datetime import datetime
 

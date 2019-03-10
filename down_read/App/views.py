@@ -30,11 +30,11 @@ def cache_data():
     LCsession.query(LCStateRecord).filter().delete()
     LCsession.commit()
     print('empty data spend %s s' % str(time.time() - nt))
+    # write data
     nt = time.time()
     for data_index in range(len(down_data)):
         down_data[data_index] = LCStateRecord(down_data[data_index].light, down_data[data_index].datetime)
     LCsession.bulk_save_objects(down_data)
-
     LCsession.commit()
     print('write data use time %s s' % str(time.time() - nt))
     LCsession.close()
@@ -54,7 +54,7 @@ def get_data():
     cacheDBlock.acquire()
     while not get_data_flag:
         try:
-            states = LCsession.query(StateRecord).filter().all()
+            states = LCsession.query(LCStateRecord).filter().all()
         except Exception:
             print('get data failed')
             LCsession.close()
