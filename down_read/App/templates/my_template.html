@@ -28,71 +28,6 @@
     };
 
     // 发送ajax请求，从后台获取json数据
-    $(document).ready(function () {
-       getData();
-       console.log(app.xday);
-       console.log(app.yvalue)
-    });
-    function getData() {
-            $.ajax({
-                url: '/test',
-                data: {},
-                type: 'GET',
-                async: true,
-                dataType: 'json',
-                success: function (data) {
-                    app.time = data.datetime;
-                    app.value = data.values;
-                    myChart.setOption({
-                        title: {
-                            text: '亮度'
-                        },
-                        tooltip: {},
-
-                        legend: {
-                            data: ['亮度']
-                        },
-
-                        xAxis: {
-                            data: app.time
-                        },
-
-                        yAxis: {
-                            type: 'value'
-                        },
-
-                        series: [{
-                            name: '亮度',
-                            type: 'line',
-
-                            data: app.value,
-                            smooth: true,
-                            markLine: {
-                                data: [
-                                    { type: 'average', name: '平均值' }
-                                ]
-                            },
-                        }],
-                        dataZoom: [
-                            {
-                                type: 'slider',
-                                show: true,
-                                xAxisIndex: [0],
-                            },
-                            {
-                                type: 'inside',
-                                xAxisIndex: [0],
-                            },
-                        ],
-
-                    })
-                },
-                error: function (msg) {
-                    console.log(msg);
-
-                }
-            })
-        }
     setInterval(function getData() {
          $.ajax({
             url:'/test',
@@ -152,7 +87,7 @@
                 
             }
         })
-    }, 1000)
+    }, 750)
     
 </script>
 </body>

@@ -22,4 +22,10 @@ class StateRecord(base):
         return 'State record in %s' % self.datetime
 
 
+class Log(base):
+    __tablename__ = 'Logs'
+    log_id = Column(Integer, primary_key=True, autoincrement=True)
+    datetime = Column(DateTime)
+
+
 base.metadata.create_all(engine)
